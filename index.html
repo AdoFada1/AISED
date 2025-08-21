@@ -3,20 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AISED Office Communication Management System</title>
+    <title>Office Communication Management System</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #2563eb;
+            --primary: #2563eb;
             --primary-dark: #1d4ed8;
-            --secondary-color: #10b981;
-            --danger-color: #ef4444;
-            --warning-color: #f59e0b;
-            --dark-color: #1e293b;
-            --light-color: #f8fafc;
-            --gray-color: #94a3b8;
+            --secondary: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #94a3b8;
             --card-bg: #ffffff;
-            --border-color: #e2e8f0;
+            --border: #e2e8f0;
+            --admin-color: #8b5cf6;
+            --hod-color: #0ea5e9;
+            --staff-color: #f97316;
         }
 
         * {
@@ -31,16 +34,32 @@
             color: #334155;
             line-height: 1.6;
             min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             padding: 20px;
         }
 
         .container {
+            width: 100%;
             max-width: 1200px;
+        }
+
+        .login-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 400px;
             margin: 0 auto;
         }
 
+        .app-container {
+            display: none;
+        }
+
         header {
-            background: var(--dark-color);
+            background: var(--dark);
             color: white;
             padding: 20px;
             border-radius: 12px;
@@ -59,7 +78,7 @@
 
         .logo i {
             font-size: 28px;
-            color: var(--secondary-color);
+            color: var(--secondary);
         }
 
         .logo h1 {
@@ -74,7 +93,7 @@
         }
 
         .role-badge {
-            background: var(--secondary-color);
+            background: var(--secondary);
             padding: 6px 12px;
             border-radius: 20px;
             font-size: 14px;
@@ -98,7 +117,7 @@
         .user-profile {
             text-align: center;
             padding-bottom: 20px;
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border);
             margin-bottom: 20px;
         }
 
@@ -106,7 +125,6 @@
             width: 80px;
             height: 80px;
             border-radius: 50%;
-            background: var(--primary-color);
             color: white;
             display: flex;
             align-items: center;
@@ -115,13 +133,25 @@
             margin: 0 auto 12px;
         }
 
+        .avatar.admin {
+            background: var(--admin-color);
+        }
+
+        .avatar.hod {
+            background: var(--hod-color);
+        }
+
+        .avatar.staff {
+            background: var(--staff-color);
+        }
+
         .user-profile h2 {
             font-size: 18px;
             margin-bottom: 4px;
         }
 
         .user-profile p {
-            color: var(--gray-color);
+            color: var(--gray);
             font-size: 14px;
         }
 
@@ -141,7 +171,7 @@
         }
 
         .nav-item.active {
-            background: var(--primary-color);
+            background: var(--primary);
             color: white;
         }
 
@@ -169,7 +199,7 @@
             font-size: 22px;
             margin-bottom: 20px;
             padding-bottom: 12px;
-            border-bottom: 2px solid var(--border-color);
+            border-bottom: 2px solid var(--border);
         }
 
         .stats-grid {
@@ -180,7 +210,7 @@
         }
 
         .stat-card {
-            background: var(--light-color);
+            background: var(--light);
             padding: 20px;
             border-radius: 12px;
             text-align: center;
@@ -189,14 +219,14 @@
 
         .stat-card h3 {
             font-size: 14px;
-            color: var(--gray-color);
+            color: var(--gray);
             margin-bottom: 8px;
         }
 
         .stat-card .value {
             font-size: 28px;
             font-weight: 700;
-            color: var(--primary-color);
+            color: var(--primary);
         }
 
         .activity-list {
@@ -210,12 +240,12 @@
             align-items: center;
             gap: 12px;
             padding: 12px;
-            background: var(--light-color);
+            background: var(--light);
             border-radius: 8px;
         }
 
         .activity-item i {
-            color: var(--primary-color);
+            color: var(--primary);
             font-size: 18px;
         }
 
@@ -239,7 +269,7 @@
         .form-control {
             width: 100%;
             padding: 12px 16px;
-            border: 1px solid var(--border-color);
+            border: 1px solid var(--border);
             border-radius: 8px;
             font-size: 16px;
         }
@@ -260,7 +290,7 @@
         }
 
         .btn-primary {
-            background: var(--primary-color);
+            background: var(--primary);
             color: white;
         }
 
@@ -269,8 +299,23 @@
         }
 
         .btn-secondary {
-            background: var(--secondary-color);
+            background: var(--secondary);
             color: white;
+        }
+
+        .btn-warning {
+            background: var(--warning);
+            color: black;
+        }
+
+        .btn-danger {
+            background: var(--danger);
+            color: white;
+        }
+
+        .btn-sm {
+            padding: 6px 12px;
+            font-size: 14px;
         }
 
         .submission-list {
@@ -280,10 +325,10 @@
         }
 
         .submission-item {
-            background: var(--light-color);
+            background: var(--light);
             padding: 16px;
             border-radius: 8px;
-            border-left: 4px solid var(--primary-color);
+            border-left: 4px solid var(--primary);
         }
 
         .submission-item h3 {
@@ -293,7 +338,7 @@
         .submission-meta {
             display: flex;
             gap: 16px;
-            color: var(--gray-color);
+            color: var(--gray);
             font-size: 14px;
             margin-bottom: 12px;
         }
@@ -309,6 +354,16 @@
         .status-pending {
             background: #fef3c7;
             color: #92400e;
+        }
+
+        .status-forwarded {
+            background: #bfdbfe;
+            color: #1e40af;
+        }
+        
+        .status-hod-approved {
+            background: #ddd6fe;
+            color: #5b21b6;
         }
 
         .status-approved {
@@ -339,7 +394,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 12px;
-            background: var(--light-color);
+            background: var(--light);
             border-radius: 8px;
         }
 
@@ -354,11 +409,152 @@
             gap: 8px;
         }
 
+        .admin-controls {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .user-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 16px;
+        }
+
+        .user-table th,
+        .user-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .user-table th {
+            background: var(--light);
+            font-weight: 600;
+        }
+
         .footer {
             text-align: center;
             margin-top: 40px;
-            color: var(--gray-color);
+            color: var(--gray);
             font-size: 14px;
+        }
+
+        .role-permission {
+            background: var(--light);
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+        }
+
+        .role-permission h3 {
+            margin-bottom: 8px;
+            color: var(--primary);
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+            background: var(--primary);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: -10px;
+        }
+
+        .login-header h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .login-header p {
+            color: var(--light);
+        }
+
+        .demo-accounts {
+            background: var(--light);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .demo-accounts h4 {
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .demo-account {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+            border-bottom: 1px dashed var(--border);
+        }
+
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            height: 400px;
+            background: var(--light);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .chat-header {
+            padding: 16px;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 16px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 12px;
+            border-radius: 12px;
+        }
+
+        .message.received {
+            background: white;
+            align-self: flex-start;
+        }
+
+        .message.sent {
+            background: var(--primary);
+            color: white;
+            align-self: flex-end;
+        }
+
+        .chat-input {
+            display: flex;
+            padding: 16px;
+            gap: 12px;
+            background: white;
+            border-top: 1px solid var(--border);
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+        }
+
+        .settings-form {
+            background: var(--light);
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
         }
 
         @media (max-width: 1100px) {
@@ -380,309 +576,806 @@
                 grid-template-columns: 1fr;
             }
             
-            header {
-                flex-direction: column;
-                text-align: center;
-                gap: 12px;
+            .login-container {
+                width: 100%;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <div class="logo">
-                <i class="fas fa-building"></i>
-                <h1>Office Communication Management System</h1>
+        <!-- Login Form -->
+        <div class="login-container" id="loginView">
+            <div class="login-header">
+                <h2>Office Communication System</h2>
+                <p>Sign in to access your dashboard</p>
             </div>
-            <div class="user-info">
-                <div class="role-badge">HOD</div>
-                <div>IT Department</div>
+            
+            <div class="form-group">
+                <label for="loginEmail">Email Address</label>
+                <input type="email" class="form-control" id="loginEmail" placeholder="Enter your email">
             </div>
-        </header>
-
-        <div class="dashboard">
-            <div class="sidebar">
-                <div class="user-profile">
-                    <div class="avatar">
-                        <i class="fas fa-user-tie"></i>
-                    </div>
-                    <h2>Ado Baba</h2>
-                    <p>Head of IT Department</p>
-                </div>
-
-                <div class="nav-item active" data-tab="dashboard">
-                    <i class="fas fa-th-large"></i>
-                    <span>Dashboard</span>
-                </div>
-                <div class="nav-item" data-tab="submissions">
-                    <i class="fas fa-paper-plane"></i>
-                    <span>Submit Report</span>
-                </div>
-                <div class="nav-item" data-tab="staff">
-                    <i class="fas fa-user-plus"></i>
-                    <span>Register Staff</span>
-                </div>
-                <div class="nav-item" data-tab="history">
-                    <i class="fas fa-history"></i>
-                    <span>Submission History</span>
-                </div>
+            
+            <div class="form-group">
+                <label for="loginPassword">Password</label>
+                <input type="password" class="form-control" id="loginPassword" placeholder="Enter your password">
             </div>
-
-            <div class="main-content">
-                <div class="tab-content active" id="dashboard">
-                    <h2 class="section-title">Dashboard</h2>
-                    
-                    <div class="stats-grid">
-                        <div class="stat-card">
-                            <h3>Pending Reports</h3>
-                            <div class="value">3</div>
-                        </div>
-                        <div class="stat-card">
-                            <h3>Department Staff</h3>
-                            <div class="value">24</div>
-                        </div>
-                        <div class="stat-card">
-                            <h3>My Submissions</h3>
-                            <div class="value">5</div>
-                        </div>
-                    </div>
-
-                    <h3>Recent Activity</h3>
-                    <div class="activity-list">
-                        <div class="activity-item">
-                            <i class="fas fa-file-alt"></i>
-                            <div>
-                                <p><strong>Monthly IT Report</strong> was submitted to Executive Secretary</p>
-                                <small>2 hours ago</small>
-                            </div>
-                        </div>
-                        <div class="activity-item">
-                            <i class="fas fa-user-plus"></i>
-                            <div>
-                                <p>New staff member <strong>Sarah Johnson</strong> was registered</p>
-                                <small>Yesterday</small>
-                            </div>
-                        </div>
-                        <div class="activity-item">
-                            <i class="fas fa-check-circle"></i>
-                            <div>
-                                <p>Your <strong>Budget Request</strong> was approved by Executive Secretary</p>
-                                <small>3 days ago</small>
-                            </div>
-                        </div>
-                    </div>
+            
+            <button class="btn btn-primary" id="loginBtn" style="width: 100%;">Sign In</button>
+            
+            <div class="demo-accounts">
+                <h4>Demo Accounts:</h4>
+                <div class="demo-account">
+                    <span>Admin: <strong>admin@office.org</strong></span>
+                    <span>Password: <strong>admin123</strong></span>
                 </div>
-
-                <div class="tab-content" id="submissions">
-                    <h2 class="section-title">Submit Report to Executive Secretary</h2>
-                    
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label for="department">Department</label>
-                            <select class="form-control" id="department">
-                                <option>IT</option>
-                                <option>Finance</option>
-                                <option>Operations</option>
-                                <option>Marketing</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="subject">Subject</label>
-                            <input type="text" class="form-control" id="subject" placeholder="Enter report subject">
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="message">Report Content</label>
-                        <textarea class="form-control" id="message" placeholder="Write your report..."></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="attachment">Attachment</label>
-                        <input type="file" class="form-control" id="attachment">
-                    </div>
-                    
-                    <button class="btn btn-primary" id="submit-btn">Submit Report</button>
-
-                    <h2 class="section-title" style="margin-top: 32px;">My Recent Submissions</h2>
-                    <div class="submission-list">
-                        <div class="submission-item">
-                            <h3>Monthly IT Performance Report</h3>
-                            <div class="submission-meta">
-                                <span>IT Department</span>
-                                <span>October 26, 2023</span>
-                                <span>To: Executive Secretary</span>
-                            </div>
-                            <p>Monthly performance report for IT department including system uptime, project status, and resource utilization.</p>
-                            <div>
-                                <span class="status-badge status-pending">Pending Review</span>
-                            </div>
-                        </div>
-                        <div class="submission-item">
-                            <h3>Budget Request for Q4</h3>
-                            <div class="submission-meta">
-                                <span>IT Department</span>
-                                <span>October 20, 2023</span>
-                                <span>To: Executive Secretary</span>
-                            </div>
-                            <p>Request for additional budget allocation for hardware upgrades and software licenses.</p>
-                            <div>
-                                <span class="status-badge status-approved">Approved</span>
-                            </div>
-                        </div>
-                    </div>
+                <div class="demo-account">
+                    <span>HOD: <strong>hod@office.org</strong></span>
+                    <span>Password: <strong>hod123</strong></span>
                 </div>
-
-                <div class="tab-content" id="staff">
-                    <h2 class="section-title">Register New Staff Member</h2>
-                    <p>Add new staff members to your department</p>
-                    
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label for="staff-name">Full Name</label>
-                            <input type="text" class="form-control" id="staff-name" placeholder="Enter full name">
-                        </div>
-                        <div class="form-group">
-                            <label for="staff-email">Email</label>
-                            <input type="email" class="form-control" id="staff-email" placeholder="Enter email address">
-                        </div>
-                    </div>
-                    
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label for="staff-position">Position</label>
-                            <input type="text" class="form-control" id="staff-position" placeholder="Enter position title">
-                        </div>
-                        <div class="form-group">
-                            <label for="staff-department">Department</label>
-                            <select class="form-control" id="staff-department">
-                                <option>IT</option>
-                                <option>Finance</option>
-                                <option>Operations</option>
-                                <option>Marketing</option>
-                            </select>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="staff-start-date">Start Date</label>
-                        <input type="date" class="form-control" id="staff-start-date">
-                    </div>
-                    
-                    <button class="btn btn-primary" id="register-staff-btn"><i class="fas fa-user-plus"></i> Register Staff</button>
-
-                    <h2 class="section-title" style="margin-top: 32px;">Department Staff</h2>
-                    <div class="submission-list">
-                        <div class="submission-item">
-                            <h3>Sarah Johnson</h3>
-                            <div class="submission-meta">
-                                <span>Software Developer</span>
-                                <span>sarah.j@company.com</span>
-                                <span>Started: Oct 15, 2023</span>
-                            </div>
-                            <div>
-                                <span class="status-badge status-approved">Active</span>
-                            </div>
-                        </div>
-                        <div class="submission-item">
-                            <h3>Michael Chen</h3>
-                            <div class="submission-meta">
-                                <span>Systems Administrator</span>
-                                <span>michael.c@company.com</span>
-                                <span>Started: Aug 10, 2022</span>
-                            </div>
-                            <div>
-                                <span class="status-badge status-approved">Active</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tab-content" id="history">
-                    <h2 class="section-title">Submission History</h2>
-                    <p>All your previous submissions to the Executive Secretary</p>
-                    
-                    <div class="submission-list">
-                        <div class="submission-item">
-                            <h3>Monthly IT Performance Report</h3>
-                            <div class="submission-meta">
-                                <span>IT Department</span>
-                                <span>October 26, 2023</span>
-                                <span>To: Executive Secretary</span>
-                            </div>
-                            <p>Monthly performance report for IT department including system uptime, project status, and resource utilization.</p>
-                            <div>
-                                <span class="status-badge status-pending">Pending Review</span>
-                            </div>
-                        </div>
-                        <div class="submission-item">
-                            <h3>Budget Request for Q4</h3>
-                            <div class="submission-meta">
-                                <span>IT Department</span>
-                                <span>October 20, 2023</span>
-                                <span>To: Executive Secretary</span>
-                            </div>
-                            <p>Request for additional budget allocation for hardware upgrades and software licenses.</p>
-                            <div>
-                                <span class="status-badge status-approved">Approved</span>
-                            </div>
-                        </div>
-                        <div class="submission-item">
-                            <h3>Staff Recruitment Request</h3>
-                            <div class="submission-meta">
-                                <span>IT Department</span>
-                                <span>September 15, 2023</span>
-                                <span>To: Executive Secretary</span>
-                            </div>
-                            <p>Request to open a new position for Senior Developer in the IT department.</p>
-                            <div>
-                                <span class="status-badge status-approved">Approved</span>
-                            </div>
-                        </div>
-                        <div class="submission-item">
-                            <h3>Software License Renewal</h3>
-                            <div class="submission-meta">
-                                <span>IT Department</span>
-                                <span>August 5, 2023</span>
-                                <span>To: Executive Secretary</span>
-                            </div>
-                            <p>Request to renew annual software licenses for development tools and productivity software.</p>
-                            <div>
-                                <span class="status-badge status-rejected">Rejected - Budget Constraints</span>
-                            </div>
-                        </div>
-                    </div>
+                <div class="demo-account">
+                    <span>Staff: <strong>staff@office.org</strong></span>
+                    <span>Password: <strong>staff123</strong></span>
                 </div>
             </div>
         </div>
+        
+        <!-- Main Application (initially hidden) -->
+        <div class="app-container" id="appView">
+            <header>
+                <div class="logo">
+                    <i class="fas fa-building"></i>
+                    <h1>Office Communication System</h1>
+                </div>
+                <div class="user-info">
+                    <div class="role-badge" id="userRole">Administrator</div>
+                    <div id="userName">Executive Secretary</div>
+                    <button class="btn btn-sm" id="logoutBtn" style="background: var(--danger); color: white;">Logout</button>
+                </div>
+            </header>
 
-        <div class="footer">
-            <p>© 2023 Office Communication Management System</p>
+            <div class="dashboard">
+                <div class="sidebar">
+                    <div class="user-profile">
+                        <div class="avatar" id="userAvatar">
+                            <i class="fas fa-user-shield"></i>
+                        </div>
+                        <h2 id="profileName">Executive Secretary</h2>
+                        <p id="profileDept">Administration</p>
+                    </div>
+
+                    <div class="nav-item active" data-tab="dashboard">
+                        <i class="fas fa-th-large"></i>
+                        <span>Dashboard</span>
+                    </div>
+                    <div class="nav-item" data-tab="submissions">
+                        <i class="fas fa-paper-plane"></i>
+                        <span>Submissions</span>
+                    </div>
+                    <div class="nav-item" data-tab="approvals">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Approvals</span>
+                    </div>
+                    <div class="nav-item hod-only" data-tab="staff">
+                        <i class="fas fa-users"></i>
+                        <span>Staff Submissions</span>
+                    </div>
+                    <div class="nav-item" data-tab="downloads">
+                        <i class="fas fa-download"></i>
+                        <span>Downloads</span>
+                    </div>
+                    <div class="nav-item" data-tab="settings">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </div>
+                    <div class="nav-item admin-only" data-tab="users">
+                        <i class="fas fa-users"></i>
+                        <span>User Management</span>
+                    </div>
+
+                    <div class="role-permission">
+                        <h3 id="roleTitle">Executive Privileges</h3>
+                        <p id="roleDescription">Final approval authority for all requests</p>
+                    </div>
+                </div>
+
+                <div class="main-content">
+                    <div class="tab-content active" id="dashboard">
+                        <h2 class="section-title">Dashboard</h2>
+                        
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <h3>Pending Approvals</h3>
+                                <div class="value">7</div>
+                            </div>
+                            <div class="stat-card">
+                                <h3>Department Staff</h3>
+                                <div class="value">24</div>
+                            </div>
+                            <div class="stat-card">
+                                <h3>My Submissions</h3>
+                                <div class="value">5</div>
+                            </div>
+                        </div>
+
+                        <h3>Recent Activity</h3>
+                        <div class="activity-list">
+                            <div class="activity-item">
+                                <i class="fas fa-file-alt"></i>
+                                <div>
+                                    <p><strong>IT Department</strong> submitted a software request</p>
+                                    <small>10 minutes ago</small>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <i class="fas fa-check-circle"></i>
+                                <div>
+                                    <p>You approved <strong>Budget Request #2023-0087</strong></p>
+                                    <small>45 minutes ago</small>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <i class="fas fa-forward"></i>
+                                <div>
+                                    <p><strong>Finance HOD</strong> forwarded a budget request</p>
+                                    <small>1 hour ago</small>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <i class="fas fa-user-plus"></i>
+                                <div>
+                                    <p><strong>DPM</strong> registered 2 new staff members</p>
+                                    <small>2 hours ago</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-content" id="submissions">
+                        <h2 class="section-title">New Submission</h2>
+                        
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="department">Department</label>
+                                <select class="form-control" id="department">
+                                    <option>IT</option>
+                                    <option>Finance</option>
+                                    <option>Operations</option>
+                                    <option>Marketing</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <input type="text" class="form-control" id="subject" placeholder="Enter subject">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea class="form-control" id="message" placeholder="Write your message..."></textarea>
+                        </div>
+                        
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="attachment">Attachment</label>
+                                <input type="file" class="form-control" id="attachment">
+                            </div>
+                            <div class="form-group">
+                                <label>Signature</label>
+                                <div id="signature-pad" style="border: 1px dashed #ccc; height: 100px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--gray);">
+                                    <i class="fas fa-signature"></i> Click to draw your signature
+                                </div>
+                                <button id="clear-signature" class="btn" style="margin-top: 8px; background: var(--gray); color: white; padding: 8px 12px;">Clear Signature</button>
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-primary" id="submit-btn">Submit to HOD</button>
+
+                        <h2 class="section-title" style="margin-top: 32px;">My Submissions</h2>
+                        <div class="submission-list" id="my-submissions">
+                            <div class="submission-item">
+                                <h3>Budget Approval for Q4 2023</h3>
+                                <div class="submission-meta">
+                                    <span>Finance Department</span>
+                                    <span>Yesterday</span>
+                                    <span>To: Finance HOD</span>
+                                </div>
+                                <p>Requesting approval for the proposed budget for the last quarter of 2023.</p>
+                                <div>
+                                    <span class="status-badge status-approved">Approved</span>
+                                </div>
+                            </div>
+                            <div class="submission-item">
+                                <h3>Software License Request</h3>
+                                <div class="submission-meta">
+                                    <span>IT Department</span>
+                                    <span>2 days ago</span>
+                                    <span>To: IT HOD</span>
+                                </div>
+                                <p>Request for new software licenses for the development team.</p>
+                                <div>
+                                    <span class="status-badge status-forwarded">Forwarded to Executive</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-content" id="approvals">
+                        <h2 class="section-title">Approval Queue</h2>
+                        <p id="approvalDescription">Final approval authority: Executive Secretary only</p>
+                        
+                        <div class="submission-list" id="approval-list">
+                            <div class="submission-item">
+                                <h3>Software License Renewal</h3>
+                                <div class="submission-meta">
+                                    <span>IT Department</span>
+                                    <span>Submitted by: David Wilson (IT HOD)</span>
+                                    <span>Today</span>
+                                </div>
+                                <p>Renewal request for Microsoft Office and Adobe Creative Cloud licenses.</p>
+                                <div class="file-list">
+                                    <div class="file-item">
+                                        <div class="file-info">
+                                            <i class="fas fa-file-pdf" style="color: #e74c3c;"></i>
+                                            <span>Software_Quote.pdf</span>
+                                        </div>
+                                        <div class="file-actions">
+                                            <button class="btn btn-primary btn-sm download-btn"><i class="fas fa-download"></i> Download</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="status-badge status-hod-approved">HOD Approved - Waiting Final Approval</span>
+                                </div>
+                                <div class="action-buttons">
+                                    <button class="btn btn-primary approve-btn"><i class="fas fa-check"></i> Approve</button>
+                                    <button class="btn btn-danger reject-btn"><i class="fas fa-times"></i> Reject</button>
+                                    <button class="btn btn-warning"><i class="fas fa-comment"></i> Request Changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-content" id="staff">
+                        <h2 class="section-title">Staff Submissions</h2>
+                        <p id="staffDescription">Submissions from your department staff</p>
+                        
+                        <div class="submission-list" id="staff-submissions">
+                            <div class="submission-item">
+                                <h3>New Development Tool Request</h3>
+                                <div class="submission-meta">
+                                    <span>IT Department</span>
+                                    <span>Submitted by: Sarah Smith (Staff)</span>
+                                    <span>Today</span>
+                                </div>
+                                <p>Request for new software development tool license for the engineering team.</p>
+                                <div class="file-list">
+                                    <div class="file-item">
+                                        <div class="file-info">
+                                            <i class="fas fa-file-pdf" style="color: #e74c3c;"></i>
+                                            <span>Tool_Quote.pdf</span>
+                                        </div>
+                                        <div class="file-actions">
+                                            <button class="btn btn-primary btn-sm download-btn"><i class="fas fa-download"></i> Download</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="status-badge status-pending">Pending HOD Review</span>
+                                </div>
+                                <div class="action-buttons">
+                                    <button class="btn btn-primary forward-btn"><i class="fas fa-check"></i> Approve & Forward to Executive</button>
+                                    <button class="btn btn-danger reject-btn"><i class="fas fa-times"></i> Reject</button>
+                                    <button class="btn btn-warning"><i class="fas fa-comment"></i> Request Changes</button>
+                                </div>
+                            </div>
+                            <div class="submission-item">
+                                <h3>Team Building Event Proposal</h3>
+                                <div class="submission-meta">
+                                    <span>IT Department</span>
+                                    <span>Submitted by: John Davis (Staff)</span>
+                                    <span>Yesterday</span>
+                                </div>
+                                <p>Proposal for quarterly team building event to boost morale.</p>
+                                <div class="file-list">
+                                    <div class="file-item">
+                                        <div class="file-info">
+                                            <i class="fas fa-file-word" style="color: #2b579a;"></i>
+                                            <span>Event_Proposal.docx</span>
+                                        </div>
+                                        <div class="file-actions">
+                                            <button class="btn btn-primary btn-sm download-btn"><i class="fas fa-download"></i> Download</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="status-badge status-pending">Pending HOD Review</span>
+                                </div>
+                                <div class="action-buttons">
+                                    <button class="btn btn-primary forward-btn"><i class="fas fa-check"></i> Approve & Forward to Executive</button>
+                                    <button class="btn btn-danger reject-btn"><i class="fas fa-times"></i> Reject</button>
+                                    <button class="btn btn-warning"><i class="fas fa-comment"></i> Request Changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-content" id="downloads">
+                        <h2 class="section-title">Download Approved Files</h2>
+                        <p>Access approved files from Executive Secretary and staff</p>
+                        
+                        <div class="submission-list">
+                            <div class="submission-item">
+                                <h3>Q4 Budget Approval</h3>
+                                <div class="submission-meta">
+                                    <span>From: Executive Secretary</span>
+                                    <span>Approved: October 26, 2023</span>
+                                    <span>Department: Finance</span>
+                                </div>
+                                <p>Approved budget for the fourth quarter of 2023.</p>
+                                <div class="file-list">
+                                    <div class="file-item">
+                                        <div class="file-info">
+                                            <i class="fas fa-file-excel" style="color: #21a366;"></i>
+                                            <span>Q4_Budget_Approved.xlsx</span>
+                                        </div>
+                                        <div class="file-actions">
+                                            <button class="btn btn-primary btn-sm download-btn"><i class="fas fa-download"></i> Download</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="submission-item">
+                                <h3>Software License Approval</h3>
+                                <div class="submission-meta">
+                                    <span>From: Executive Secretary</span>
+                                    <span>Approved: October 24, 2023</span>
+                                    <span>Department: IT</span>
+                                </div>
+                                <p>Approved software licenses for development team.</p>
+                                <div class="file-list">
+                                    <div class="file-item">
+                                        <div class="file-info">
+                                            <i class="fas fa-file-pdf" style="color: #e74c3c;"></i>
+                                            <span>Software_License_Approval.pdf</span>
+                                        </div>
+                                        <div class="file-actions">
+                                            <button class="btn btn-primary btn-sm download-btn"><i class="fas fa-download"></i> Download</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="submission-item">
+                                <h3>Marketing Campaign Proposal</h3>
+                                <div class="submission-meta">
+                                    <span>From: Marketing Staff</span>
+                                    <span>Approved: October 20, 2023</span>
+                                    <span>Department: Marketing</span>
+                                </div>
+                                <p>Approved marketing campaign for product launch.</p>
+                                <div class="file-list">
+                                    <div class="file-item">
+                                        <div class="file-info">
+                                            <i class="fas fa-file-word" style="color: #2b579a;"></i>
+                                            <span>Marketing_Campaign_Approved.docx</span>
+                                        </div>
+                                        <div class="file-actions">
+                                            <button class="btn btn-primary btn-sm download-btn"><i class="fas fa-download"></i> Download</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-content" id="settings">
+                        <h2 class="section-title">Account Settings</h2>
+                        <p>Update your login details and personal information</p>
+                        
+                        <div class="settings-form">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="settings-name">Full Name</label>
+                                    <input type="text" class="form-control" id="settings-name" value="IT HOD">
+                                </div>
+                                <div class="form-group">
+                                    <label for="settings-email">Email Address</label>
+                                    <input type="email" class="form-control" id="settings-email" value="hod@office.org">
+                                </div>
+                            </div>
+                            
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="settings-department">Department</label>
+                                    <input type="text" class="form-control" id="settings-department" value="IT" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="settings-role">Role</label>
+                                    <input type="text" class="form-control" id="settings-role" value="Head of Department" readonly>
+                                </div>
+                            </div>
+                            
+                            <h3 class="section-title">Change Password</h3>
+                            
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="current-password">Current Password</label>
+                                    <input type="password" class="form-control" id="current-password" placeholder="Enter current password">
+                                </div>
+                                <div class="form-group">
+                                    <label for="new-password">New Password</label>
+                                    <input type="password" class="form-control" id="new-password" placeholder="Enter new password">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="confirm-password">Confirm New Password</label>
+                                <input type="password" class="form-control" id="confirm-password" placeholder="Confirm new password">
+                            </div>
+                            
+                            <button class="btn btn-primary" id="save-settings">Save Changes</button>
+                        </div>
+                    </div>
+
+                    <div class="tab-content" id="users">
+                        <h2 class="section-title">User Management</h2>
+                        <p>Administrators can manage all system users</p>
+                        
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search users...">
+                        </div>
+                        
+                        <table class="user-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Department</th>
+                                    <th>Role</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Executive Secretary</td>
+                                    <td>admin@office.org</td>
+                                    <td>Administration</td>
+                                    <td><span class="status-badge status-approved">Administrator</span></td>
+                                    <td>
+                                        <button class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>IT HOD</td>
+                                    <td>hod@office.org</td>
+                                    <td>IT</td>
+                                    <td><span class="status-badge status-hod-approved">HOD</span></td>
+                                    <td>
+                                        <button class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></button>
+                                        <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>John Doe</td>
+                                    <td>staff@office.org</td>
+                                    <td>IT</td>
+                                    <td><span class="status-badge status-pending">Staff</span></td>
+                                    <td>
+                                        <button class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></button>
+                                        <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer">
+                <p>© 2023 Office Communication System</p>
+            </div>
         </div>
     </div>
 
     <script>
+        // User database simulation
+        const users = {
+            'admin@office.org': {
+                password: 'admin123',
+                name: 'Executive Secretary',
+                department: 'Administration',
+                role: 'admin',
+                permissions: ['final_approval', 'view_all', 'chat_all']
+            },
+            'hod@office.org': {
+                password: 'hod123',
+                name: 'IT HOD',
+                department: 'IT',
+                role: 'hod',
+                permissions: ['review_submissions', 'forward_approvals', 'view_department', 'chat_admin']
+            },
+            'staff@office.org': {
+                password: 'staff123',
+                name: 'John Doe',
+                department: 'IT',
+                role: 'staff',
+                permissions: ['submit_requests']
+            }
+        };
+
+        // DOM Elements
+        const loginView = document.getElementById('loginView');
+        const appView = document.getElementById('appView');
+        const loginBtn = document.getElementById('loginBtn');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const userRole = document.getElementById('userRole');
+        const userName = document.getElementById('userName');
+        const profileName = document.getElementById('profileName');
+        const profileDept = document.getElementById('profileDept');
+        const userAvatar = document.getElementById('userAvatar');
+        const roleTitle = document.getElementById('roleTitle');
+        const roleDescription = document.getElementById('roleDescription');
+        const approvalDescription = document.getElementById('approvalDescription');
+        const staffDescription = document.getElementById('staffDescription');
+        const saveSettingsBtn = document.getElementById('save-settings');
+        
+        // Current user
+        let currentUser = null;
+
+        // Login functionality
+        loginBtn.addEventListener('click', () => {
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            if (users[email] && users[email].password === password) {
+                currentUser = users[email];
+                showAppView();
+            } else {
+                alert('Invalid email or password. Please try again.');
+            }
+        });
+
+        // Logout functionality
+        logoutBtn.addEventListener('click', () => {
+            currentUser = null;
+            showLoginView();
+        });
+
+        // Show appropriate view based on login status
+        function showAppView() {
+            loginView.style.display = 'none';
+            appView.style.display = 'block';
+            
+            // Update UI based on user role
+            updateUIForUser();
+        }
+
+        function showLoginView() {
+            loginView.style.display = 'block';
+            appView.style.display = 'none';
+            
+            // Clear login form
+            document.getElementById('loginEmail').value = '';
+            document.getElementById('loginPassword').value = '';
+        }
+
+        // Update UI based on user role
+        function updateUIForUser() {
+            if (!currentUser) return;
+            
+            // Update user info
+            userRole.textContent = currentUser.role === 'admin' ? 'Executive Secretary' : 
+                                 currentUser.role === 'hod' ? 'Head of Department' : 'Staff';
+            userName.textContent = currentUser.name;
+            profileName.textContent = currentUser.name;
+            profileDept.textContent = currentUser.department;
+            
+            // Update avatar
+            userAvatar.className = 'avatar';
+            if (currentUser.role === 'admin') userAvatar.classList.add('admin');
+            else if (currentUser.role === 'hod') userAvatar.classList.add('hod');
+            else userAvatar.classList.add('staff');
+            
+            // Update role description
+            if (currentUser.role === 'admin') {
+                roleTitle.textContent = 'Executive Privileges';
+                roleDescription.textContent = 'Final approval authority for all requests';
+                approvalDescription.textContent = 'Final approval authority: Executive Secretary only';
+                
+                // Show admin features
+                document.querySelectorAll('.admin-only').forEach(el => {
+                    el.style.display = 'flex';
+                });
+                document.querySelectorAll('.hod-only').forEach(el => {
+                    el.style.display = 'none';
+                });
+                
+                // Update approval list for admin
+                document.getElementById('approval-list').innerHTML = `
+                    <div class="submission-item">
+                        <h3>Software License Renewal</h3>
+                        <div class="submission-meta">
+                            <span>IT Department</span>
+                            <span>Submitted by: David Wilson (IT HOD)</span>
+                            <span>Today</span>
+                        </div>
+                        <p>Renewal request for Microsoft Office and Adobe Creative Cloud licenses.</p>
+                        <div class="file-list">
+                            <div class="file-item">
+                                <div class="file-info">
+                                    <i class="fas fa-file-pdf" style="color: #e74c3c;"></i>
+                                    <span>Software_Quote.pdf</span>
+                                </div>
+                                <div class="file-actions">
+                                    <button class="btn btn-primary btn-sm download-btn"><i class="fas fa-download"></i> Download</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="status-badge status-hod-approved">HOD Approved - Waiting Final Approval</span>
+                        </div>
+                        <div class="action-buttons">
+                            <button class="btn btn-primary approve-btn"><i class="fas fa-check"></i> Approve</button>
+                            <button class="btn btn-danger reject-btn"><i class="fas fa-times"></i> Reject</button>
+                            <button class="btn btn-warning"><i class="fas fa-comment"></i> Request Changes</button>
+                        </div>
+                    </div>
+                `;
+            } else if (currentUser.role === 'hod') {
+                roleTitle.textContent = 'HOD Privileges';
+                roleDescription.textContent = 'Review staff submissions and forward to Executive Secretary';
+                approvalDescription.textContent = 'Review submissions from your department staff';
+                staffDescription.textContent = 'Submissions from your department staff';
+                
+                // Show HOD features
+                document.querySelectorAll('.admin-only').forEach(el => {
+                    el.style.display = 'none';
+                });
+                document.querySelectorAll('.hod-only').forEach(el => {
+                    el.style.display = 'flex';
+                });
+                
+                // Update approval list for HOD
+                document.getElementById('approval-list').innerHTML = `
+                    <div class="submission-item">
+                        <h3>New Software Development Tool</h3>
+                        <div class="submission-meta">
+                            <span>IT Department</span>
+                            <span>Submitted by: Sarah Smith (Staff)</span>
+                            <span>Today</span>
+                        </div>
+                        <p>Request for new software development tool license for the engineering team.</p>
+                        <div class="file-list">
+                            <div class="file-item">
+                                <div class="file-info">
+                                    <i class="fas fa-file-pdf" style="color: #e74c3c;"></i>
+                                    <span>Tool_Quote.pdf</span>
+                                </div>
+                                <div class="file-actions">
+                                    <button class="btn btn-primary btn-sm download-btn"><i class="fas fa-download"></i> Download</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="status-badge status-pending">Pending HOD Review</span>
+                        </div>
+                        <div class="action-buttons">
+                            <button class="btn btn-primary forward-btn"><i class="fas fa-check"></i> Approve & Forward to Executive</button>
+                            <button class="btn btn-danger reject-btn"><i class="fas fa-times"></i> Reject</button>
+                            <button class="btn btn-warning"><i class="fas fa-comment"></i> Request Changes</button>
+                        </div>
+                    </div>
+                `;
+            } else {
+                roleTitle.textContent = 'Staff Privileges';
+                roleDescription.textContent = 'Submit requests to your Head of Department';
+                approvalDescription.textContent = 'Your submissions will be reviewed by your HOD';
+                
+                // Hide features not for staff
+                document.querySelectorAll('.admin-only').forEach(el => {
+                    el.style.display = 'none';
+                });
+                document.querySelectorAll('.hod-only').forEach(el => {
+                    el.style.display = 'none';
+                });
+                
+                // Update approval list for staff (empty as staff can't approve)
+                document.getElementById('approval-list').innerHTML = `
+                    <div class="activity-item">
+                        <i class="fas fa-info-circle"></i>
+                        <div>
+                            <p>As a staff member, you don't have approval authority. Your submissions will be reviewed by your HOD.</p>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Set up all interactive elements
+            setupApprovalButtons();
+            setupFileDownloads();
+        }
+
+        // Set up approval button functionality
+        function setupApprovalButtons() {
+            // Approve buttons
+            document.querySelectorAll('.approve-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const item = this.closest('.submission-item');
+                    const statusBadge = item.querySelector('.status-badge');
+                    
+                    if (currentUser.role === 'admin') {
+                        statusBadge.textContent = 'Approved by Executive Secretary';
+                        statusBadge.className = 'status-badge status-approved';
+                        alert('Request approved! This has been logged in the system.');
+                    }
+                    
+                    item.style.opacity = '0.7';
+                });
+            });
+
+            // Forward buttons (for HODs)
+            document.querySelectorAll('.forward-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const item = this.closest('.submission-item');
+                    const statusBadge = item.querySelector('.status-badge');
+                    
+                    if (currentUser.role === 'hod') {
+                        statusBadge.textContent = 'Forwarded to Executive Secretary';
+                        statusBadge.className = 'status-badge status-forwarded';
+                        alert('Request forwarded to Executive Secretary for final approval.');
+                    }
+                    
+                    item.style.opacity = '0.7';
+                });
+            });
+
+            // Reject buttons
+            document.querySelectorAll('.reject-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const item = this.closest('.submission-item');
+                    const statusBadge = item.querySelector('.status-badge');
+                    
+                    statusBadge.textContent = 'Rejected';
+                    statusBadge.className = 'status-badge status-rejected';
+                    alert('Request rejected! The submitter has been notified.');
+                    
+                    item.style.opacity = '0.7';
+                });
+            });
+        }
+
+        // Set up file download functionality
+        function setupFileDownloads() {
+            document.querySelectorAll('.download-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const fileName = this.closest('.file-item').querySelector('.file-info span').textContent;
+                    alert(`Downloading file: ${fileName}`);
+                });
+            });
+        }
+
         // Tab switching functionality
         document.querySelectorAll('.nav-item').forEach(item => {
-            item.addEventListener('click', function() {
-                // Remove active class from all items
-                document.querySelectorAll('.nav-item').forEach(i => {
-                    i.classList.remove('active');
+            if (item.dataset.tab) {
+                item.addEventListener('click', function() {
+                    // Remove active class from all items
+                    document.querySelectorAll('.nav-item').forEach(i => {
+                        i.classList.remove('active');
+                    });
+                    
+                    // Add active class to clicked item
+                    this.classList.add('active');
+                    
+                    // Hide all tab contents
+                    document.querySelectorAll('.tab-content').forEach(tab => {
+                        tab.classList.remove('active');
+                    });
+                    
+                    // Show the selected tab content
+                    const tabId = this.dataset.tab;
+                    document.getElementById(tabId).classList.add('active');
                 });
-                
-                // Add active class to clicked item
-                this.classList.add('active');
-                
-                // Hide all tab contents
-                document.querySelectorAll('.tab-content').forEach(tab => {
-                    tab.classList.remove('active');
-                });
-                
-                // Show the selected tab content
-                const tabId = this.dataset.tab;
-                document.getElementById(tabId).classList.add('active');
-            });
+            }
         });
 
         // Form submission simulation
@@ -693,34 +1386,35 @@
             const department = document.getElementById('department').value;
             
             if (subject && message) {
-                alert(`Report submitted to Executive Secretary from ${department} department!`);
+                alert(`Submission sent to ${department} HOD for review!`);
                 document.getElementById('subject').value = '';
                 document.getElementById('message').value = '';
                 document.getElementById('attachment').value = '';
+                
+                // Add to my submissions
+                const mySubmissions = document.getElementById('my-submissions');
+                const newSubmission = document.createElement('div');
+                newSubmission.className = 'submission-item';
+                newSubmission.innerHTML = `
+                    <h3>${subject}</h3>
+                    <div class="submission-meta">
+                        <span>${department} Department</span>
+                        <span>Just now</span>
+                        <span>To: ${department} HOD</span>
+                    </div>
+                    <p>${message}</p>
+                    <div>
+                        <span class="status-badge status-pending">Pending HOD Review</span>
+                    </div>
+                `;
+                mySubmissions.prepend(newSubmission);
             } else {
                 alert('Please fill in all required fields');
             }
         });
 
-        // Staff registration simulation
-        const registerStaffBtn = document.getElementById('register-staff-btn');
-        registerStaffBtn.addEventListener('click', () => {
-            const name = document.getElementById('staff-name').value;
-            const email = document.getElementById('staff-email').value;
-            const position = document.getElementById('staff-position').value;
-            const department = document.getElementById('staff-department').value;
-            const startDate = document.getElementById('staff-start-date').value;
-            
-            if (name && email && position && department && startDate) {
-                alert(`Staff member ${name} registered successfully in ${department} department!`);
-                document.getElementById('staff-name').value = '';
-                document.getElementById('staff-email').value = '';
-                document.getElementById('staff-position').value = '';
-                document.getElementById('staff-start-date').value = '';
-            } else {
-                alert('Please fill in all required fields');
-            }
-        });
+        // Initially show login view
+        showLoginView();
     </script>
 </body>
 </html>
